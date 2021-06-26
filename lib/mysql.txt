@@ -1,0 +1,118 @@
+id 날짜 계획명 실행여부
+
+CREATE TABLE category (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    hide TINYINT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE plan_name (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    content text NULL,
+    next_con text NULL,
+    hide TINYINT NULL,
+    category_id int,
+    PRIMARY KEY(id),
+    FOREIGN KEY (category_id) REFERENCES category(id)
+);
+
+
+CREATE TABLE doit (
+    id INT NOT NULL AUTO_INCREMENT,
+    day DATE NOT NULL,
+    yn TINYINT NULL,
+    plan_name_id int,
+    PRIMARY KEY(id),
+    FOREIGN KEY (plan_name_id) REFERENCES plan_name(id)
+);
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+INSERT INTO category(name,hide) VALUES('생활',0);
+INSERT INTO category(name,hide) VALUES('운동',0);
+INSERT INTO category(name,hide) VALUES('코딩',0);
+INSERT INTO category(name,hide) VALUES('디자인',0);
+INSERT INTO category(name,hide) VALUES('문학',0);
+
+SELECT * FROM category LIMIT 5;
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('6시기상',0,1);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('달리기',0,2);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('복근운동',0,2);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('팔운동',0,2);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('가슴운동',0,2);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('등운동',0,2);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('C언어',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('자바스크립트',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('PHP',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('nodejs',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('React',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('React native',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('유니티',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('자바',0,3);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('드로잉',0,4);
+
+INSERT INTO plan_name(name,hide,category_id) 
+VALUES('일기',0,5);
+
+SELECT * FROM plan_name LIMIT 5;
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-26',0,1);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-26',0,2);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-26',0,3);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-26',0,4);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-27',0,1);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-27',0,2);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-05-27',0,3);
+
+SELECT * FROM doit LIMIT 5;
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
