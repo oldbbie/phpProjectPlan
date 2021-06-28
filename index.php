@@ -1,9 +1,27 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
-$sql = "SELECT * FROM plan_name";
+$today = date("Ymd");
+$recorder = 0;
+if(isset($_GET['day'])){
+	$recorder += $_GET['day'];
+	$today = $today+$recorder;
+}
+$next = $recorder + 1;
+$prev = $recorder - 1;
+$year = substr( $today , 0, 4 );
+$mm = substr( $today , 4, 2 );
+$dd = substr( $today , 6, 2 );
+$sql = "
+	SELECT d.id, p.name, d.yn, p.content, next_con
+	FROM doit as d 
+	LEFT JOIN plan_name as p 
+	ON d.plan_name_id = p.id
+	WHERE d.day='{$year}-{$mm}-{$dd}'
+	";
 $result = mysqli_query($conn,$sql);
-$list = '';
+
+$table = '';
 while($row = mysqli_fetch_array($result)){
 	$escaped_id = htmlspecialchars($row['id']);
 	$escaped_name = htmlspecialchars($row['name']);
@@ -33,9 +51,9 @@ while($row = mysqli_fetch_array($result)){
 <body>
 	<div class="wrap app">
 		<header>
-			<a href="#">어제</a>
-			<h2>2021년06년26년</h2>
-			<a href="#">내일</a>
+			<a href="index.php?day=<?=$prev?>">어제</a>
+			<h2><?php echo $year.'년'.$mm.'월'.$dd.'일'; ?></h2>
+			<a href="index.php?day=<?=$next?>">내일</a>
 		</header>
 		
 		<main>
