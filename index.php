@@ -12,29 +12,42 @@ $prev = $recorder - 1;
 $year = substr( $today , 0, 4 );
 $mm = substr( $today , 4, 2 );
 $dd = substr( $today , 6, 2 );
-$sql = "
-	SELECT d.id, p.name, d.yn, p.content, next_con
+
+$sql_plan_name = "SELECT * FROM plan_name WHERE hide=0";
+$sql_doit = "
+	SELECT p.id, p.name, d.yn, p.content, next_con
 	FROM doit as d 
 	LEFT JOIN plan_name as p 
 	ON d.plan_name_id = p.id
-	WHERE d.day='{$year}-{$mm}-{$dd}'
+	WHERE d.day='{$year}-{$mm}-{$dd} AND p.hide=0'
 	";
-$result = mysqli_query($conn,$sql);
+	
+$result_plan_name = mysqli_query($conn,$sql_plan_name);
+$result_doit = mysqli_query($conn,$sql_doit);
 
 $table = '';
-while($row = mysqli_fetch_array($result)){
-	$escaped_id = htmlspecialchars($row['id']);
-	$escaped_name = htmlspecialchars($row['name']);
+$row_doit=mysqli_fetch_array($result_doit);
+while($row_plan_name = mysqli_fetch_array($result_plan_name)){
+	$escaped_id = htmlspecialchars($row_plan_name['id']);
+	$escaped_name = htmlspecialchars($row_plan_name['name']);
 	$table = $table."
 		<tr>
 			<th>{$escaped_name}</th>
 			<td>
 				<form action=\"doit_process.php\" method=\"post\">
-					<input type=\"hidden\" value=\"{$escaped_id}\">
-					<input type=\"submit\" value=\"아직안함\">
-				</form>
-			</td>
-		</tr>";
+					<input type=\"hidden\" value=\"{$escaped_id}\">";
+		if($row_plan_name['id'] == $row_doit['id']){
+			$table = $table."<input type=\"submit\" value=\"완료\">
+					</form>
+				</td>
+			</tr>";
+			$row_doit=mysqli_fetch_array($result_doit);
+		} else {
+			$table = $table."<input type=\"submit\" value=\"아직안함\">
+					</form>
+				</td>
+			</tr>";
+		}
 }
 
 ?>

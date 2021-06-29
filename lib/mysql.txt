@@ -115,12 +115,29 @@ VALUES('2021-05-27',0,3);
 INSERT INTO doit(day,yn,plan_name_id) 
 VALUES('2021-06-28',0,3);
 
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-06-28',0,3);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-06-29',0,1);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-06-29',0,3);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-06-29',0,5);
+
+INSERT INTO doit(day,yn,plan_name_id) 
+VALUES('2021-06-29',0,7);
+
 SELECT * FROM doit LIMIT 5;
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-SELECT d.id as id, p.name as name, d.yn, p.content, next_con
+SELECT * FROM plan_name WHERE hide=0;
+
+SELECT p.id as id, p.name as name, d.yn, p.content, next_con
 FROM doit as d 
 LEFT JOIN plan_name as p 
 ON d.plan_name_id = p.id
-WHERE d.day='2021-05-26';
+WHERE d.day='2021-05-26' AND p.hide=0;
