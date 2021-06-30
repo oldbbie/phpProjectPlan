@@ -1,17 +1,21 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
-$today = date("Ymd");
+date_default_timezone_set('Asia/Seoul');
+$today = date("Y-m-d");
 $recorder = 0;
 if(isset($_GET['day'])){
 	$recorder += $_GET['day'];
-	$today = $today+$recorder;
+	$s = $today." ".$recorder." days";
+	$timestamp = strtotime($s); 
+	$today = date("Y-m-d", $timestamp);
+	
 }
 $next = $recorder + 1;
 $prev = $recorder - 1;
 $year = substr( $today , 0, 4 );
-$mm = substr( $today , 4, 2 );
-$dd = substr( $today , 6, 2 );
+$mm = substr( $today , 5, 2 );
+$dd = substr( $today , 8, 2 );
 
 $sql_plan_name = "SELECT * FROM plan_name WHERE hide=0";
 $sql_doit = "
@@ -19,7 +23,7 @@ $sql_doit = "
 	FROM doit as d 
 	LEFT JOIN plan_name as p 
 	ON d.plan_name_id = p.id
-	WHERE d.day='{$year}-{$mm}-{$dd} AND p.hide=0'
+	WHERE d.day='{$today}' AND p.hide=0
 	";
 	
 $result_plan_name = mysqli_query($conn,$sql_plan_name);
@@ -33,21 +37,25 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 	$table = $table."
 		<tr>
 			<th>{$escaped_name}</th>
-			<td>
-				<form action=\"doit_process.php\" method=\"post\">
-					<input type=\"hidden\" value=\"{$escaped_id}\">";
-		if($row_plan_name['id'] == $row_doit['id']){
-			$table = $table."<input type=\"submit\" value=\"완료\">
-					</form>
-				</td>
-			</tr>";
-			$row_doit=mysqli_fetch_array($result_doit);
-		} else {
-			$table = $table."<input type=\"submit\" value=\"아직안함\">
-					</form>
-				</td>
-			</tr>";
+			<td>";
+	if($row_plan_name['id'] == $row_doit['id']){
+		$table = $table."
+			<form action=\"delete_process.php\" method=\"post\">
+				<input type=\"hidden\" value=\"{$escaped_id}\">
+				<input type=\"submit\" value=\"완료\">
+			</form>
+			";
+		$row_doit=mysqli_fetch_array($result_doit);
+	} else {
+		$table = $table."
+		<form action=\"update_process.php\" method=\"post\">
+			<input type=\"hidden\" value=\"{$escaped_id}\">
+			<input type=\"submit\" value=\"아직안함\">
+		</form>";
 		}
+	$table = $table."
+			</td>
+		</tr>";
 }
 
 ?>
