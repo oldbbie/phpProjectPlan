@@ -40,7 +40,7 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 			<td>";
 	if($row_plan_name['id'] == $row_doit['id']){
 		$table = $table."
-			<form action=\"delete_process.php\" method=\"post\">
+			<form action=\"delete_process.php\" method=\"post\" onsubmit=\"if(!confirm('취소할껀가요?')){return false;}\">
 				<input type=\"hidden\" name=\"plan_name_id\" value=\"{$escaped_id}\">
 				<input type=\"hidden\" name=\"today\" value=\"{$today}\">
 				<input type=\"submit\" value=\"완료\">
