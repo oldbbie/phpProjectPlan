@@ -1,0 +1,15 @@
+.wrap {padding: 20px}
+
+header {display: flex; align-items: center; margin-bottom: 20px}
+header>a{padding:5px 10px; border: 1px solid #ccc}
+header>a:hover{background-color: #ccc; border-color: #fff}
+header h2{margin: 0px 10px}
+
+main{}
+main table{}
+main table tr{}
+main table tr th{padding: 10px}
+main table tr td{padding: 10px}
+main table tr td form{display: flex; justify-content: center; align-items: center}
+main table tr td form input[type="hidden"]{}
+main table tr td form input[type="submit"]{}

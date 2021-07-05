@@ -68,7 +68,8 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Plan</title>
-<!--<link rel="stylesheet" href="/css/common.css">-->
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/index.css">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 </head>
 <body>
