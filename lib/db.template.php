@@ -5,4 +5,5 @@ $conn = mysqli_connect(
 	'dign753011027963',
 	'akrl0725'
 );
+mysqli_set_charset($conn,'utf8');
 ?>

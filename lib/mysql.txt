@@ -1,4 +1,6 @@
-id 날짜 계획명 실행여부
+DROP TABLE doit;
+DROP TABLE plan_name;
+DROP TABLE category;
 
 CREATE TABLE category (
     id INT NOT NULL AUTO_INCREMENT,
