@@ -81,7 +81,7 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 		</header>
 		
 		<main>
-			<a href="#">계획 관리하기</a>
+			<a href="plan.php">계획 관리하기</a>
 			<table>
 				<?=$table?>
 			</table>
