@@ -33,7 +33,7 @@ while($row = mysqli_fetch_array($result)) {
 				<td>
 					<form action=\"update_process_hide.php\" method=\"post\">
 						<input type=\"hidden\" name=\"plan_name_id\" value=\"{$row['id']}\">
-						<input type=\"hidden\" name=\"hide\" value=\"{$row['hide']}\">
+						<input type=\"hidden\" id=\"hide\" name=\"hide\" value=\"{$row['hide']}\">
 						<input type=\"submit\" value=\"{$checked}\">
 					</form>
 				</td>
@@ -58,12 +58,13 @@ $table .= "
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Plan</title>
 <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/plan.css">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 </head>
 <body>
 	<div class="wrap app">
 		<header>
+			<h1><a href="/">홈</a></h1>
 		</header>
 		
 		<main>
