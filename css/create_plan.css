@@ -1,0 +1,14 @@
+.wrap {padding: 20px}
+
+header {display: flex; align-items: center; margin-bottom: 20px}
+header h1 {}
+header h1>a {}
+
+main {}
+main form {max-width: 1024px}
+main form p {display:flex; margin-bottom: 20px}
+main form p input[type="text"] {flex:1; height: 56px}
+main form p textarea {flex:1; height: 56px}
+main form p select {width: 25vw}
+main form p select option {text-align: center}
+main form input[type="submit"] {}

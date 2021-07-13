@@ -1,7 +1,7 @@
 .wrap {padding: 20px}
 
 header {display: flex; align-items: center; margin-bottom: 20px}
-header h 1{}
+header h1{}
 header h1>a {}
 
 main{}
@@ -19,6 +19,7 @@ main table tbody tr td:nth-of-type(2) form {}
 main table tbody tr td:nth-of-type(2) form input[type="hidden"] {}
 main table tbody tr td:nth-of-type(2) form #hide[value="hidden"] {}
 main table tbody tr td:nth-of-type(2) form input[type="submit"] {padding: 2px 4px; border: 0; color:#333}
+main table tbody tr td:nth-of-type(2) form input[type="submit"]:hover {color: aliceblue}
 main table tbody tr td:nth-of-type(2) form #hide[value="0"] ~ input[type="submit"]{background-color: aquamarine}
 main table tbody tr td:nth-of-type(2) form #hide[value="1"] ~ input[type="submit"]{background-color: bisque}
 main table tbody tr td:nth-of-type(3) {}

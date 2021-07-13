@@ -68,7 +68,8 @@ $table .= "
 		</header>
 		
 		<main>
-			<a href="#">계획 추가하기</a>
+			<a href="create_plan.php">계획 추가하기</a>
+			<a href="create_plan.php">계획 수정하기</a>
 			<?=$table?>
 		</main>
 		
