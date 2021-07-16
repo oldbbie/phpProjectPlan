@@ -21,6 +21,7 @@ $table = "
 				<th scope=\"col\">해야할것</th>
 				<th scope=\"col\">다음에할것</th>
 				<th scope=\"col\">대분류</th>
+				<th scope=\"col\">수정</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,6 +41,7 @@ while($row = mysqli_fetch_array($result)) {
 				<td>{$row['content']}</td>
 				<td>{$row['next_con']}</td>
 				<td>{$row['category_name']}</td>
+				<td><a href=\"update_plan.php?id={$row['id']}\">계획 수정하기</a></td>
 			</tr>
 	";
 }
@@ -69,7 +71,6 @@ $table .= "
 		
 		<main>
 			<a href="create_plan.php">계획 추가하기</a>
-			<a href="create_plan.php">계획 수정하기</a>
 			<?=$table?>
 		</main>
 		
