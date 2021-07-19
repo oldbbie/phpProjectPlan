@@ -34,6 +34,8 @@ $row_doit=mysqli_fetch_array($result_doit);
 while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 	$escaped_id = htmlspecialchars($row_plan_name['id']);
 	$escaped_name = htmlspecialchars($row_plan_name['name']);
+	$escaped_content = htmlspecialchars($row_plan_name['content']);
+	$escaped_next_con = htmlspecialchars($row_plan_name['next_con']);
 	$table = $table."
 		<tr>
 			<th>{$escaped_name}</th>
@@ -57,6 +59,8 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 		}
 	$table = $table."
 			</td>
+			<td>{$escaped_content}</td>
+			<td>{$escaped_next_con}</td>
 		</tr>";
 }
 

@@ -71,6 +71,7 @@ $table .= "
 		
 		<main>
 			<a href="create_plan.php">계획 추가하기</a>
+			<a href="create_category.php">대분류 추가하기</a>
 			<?=$table?>
 		</main>
 		

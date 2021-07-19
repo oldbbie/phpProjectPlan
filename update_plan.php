@@ -36,10 +36,11 @@
 	<div class="wrap app">
 		<header>
 			<h1><a href="/">홈</a></h1>
+			<a href="/plan.php">뒤로</a>
 		</header>
 		
 		<main>
-			<form action="create_process_plan.php" method="post">
+			<form action="update_process_plan.php" method="post">
 				<p>
 					<input type="hidden" name="id" value="<?=$row_plan['id']?>">
 				</p>
@@ -58,7 +59,7 @@
 					</select>
 				</p>
 				<p>
-					<input type="submit" value="계획만들기">
+					<input type="submit" value="계획수정하기">
 				</p>
 			</form>
 		</main>

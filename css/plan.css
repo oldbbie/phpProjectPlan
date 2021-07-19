@@ -22,6 +22,7 @@ main table tbody tr td:nth-of-type(2) form input[type="submit"] {padding: 2px 4p
 main table tbody tr td:nth-of-type(2) form input[type="submit"]:hover {color: aliceblue}
 main table tbody tr td:nth-of-type(2) form #hide[value="0"] ~ input[type="submit"]{background-color: aquamarine}
 main table tbody tr td:nth-of-type(2) form #hide[value="1"] ~ input[type="submit"]{background-color: bisque}
-main table tbody tr td:nth-of-type(3) {}
+main table tbody tr td:nth-of-type(3) {max-width : 400px}
+main table tbody tr td:nth-of-type(4) {max-width : 400px}
 
 footer {}
