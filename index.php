@@ -29,13 +29,19 @@ $sql_doit = "
 $result_plan_name = mysqli_query($conn,$sql_plan_name);
 $result_doit = mysqli_query($conn,$sql_doit);
 
-$table = '';
+$table = "
+	<tr>
+		<th>계획</th>
+		<th>실행유무</th>
+		<th>간단메모</th>
+		<th>이번목표</th>
+	</tr>
+";
 $row_doit=mysqli_fetch_array($result_doit);
 while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 	$escaped_id = htmlspecialchars($row_plan_name['id']);
 	$escaped_name = htmlspecialchars($row_plan_name['name']);
 	$escaped_content = htmlspecialchars($row_plan_name['content']);
-	$escaped_next_con = htmlspecialchars($row_plan_name['next_con']);
 	$table = $table."
 		<tr>
 			<th>{$escaped_name}</th>
@@ -59,8 +65,8 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 		}
 	$table = $table."
 			</td>
+			<td><input type=\"text\" placehoder=\"간단메모\"></td>
 			<td>{$escaped_content}</td>
-			<td>{$escaped_next_con}</td>
 		</tr>";
 }
 

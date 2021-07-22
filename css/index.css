@@ -10,7 +10,8 @@ main table{}
 main table tr{}
 main table tr th{padding: 10px}
 main table tr td{padding: 10px}
-main table tr td:nth-of-type(2){max-width : 400px}
+main table tr td:nth-of-type(2){}
+main table tr td:nth-of-type(2) input[type="text"]{width:200px}
 main table tr td:nth-of-type(3){max-width : 400px}
 main table tr td form{display: flex; justify-content: center; align-items: center}
 main table tr td form input[type="hidden"]{}

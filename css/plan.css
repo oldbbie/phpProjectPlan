@@ -5,7 +5,9 @@ header h1{}
 header h1>a {}
 
 main{}
-main>a{}
+main .create{display: flex}
+main .create>a{margin: 10px; padding: 10px; border: 1px dotted}
+main .create>a:hover{background-color: #000; color:#fff}
 main table {}
 main table thead {}
 main table thead tr {}
@@ -24,5 +26,11 @@ main table tbody tr td:nth-of-type(2) form #hide[value="0"] ~ input[type="submit
 main table tbody tr td:nth-of-type(2) form #hide[value="1"] ~ input[type="submit"]{background-color: bisque}
 main table tbody tr td:nth-of-type(3) {max-width : 400px}
 main table tbody tr td:nth-of-type(4) {max-width : 400px}
+main table tbody tr td:nth-of-type(5) {}
+main table tbody tr td:nth-of-type(5) a {}
+main table tbody tr td:nth-of-type(6) {}
+main table tbody tr td:nth-of-type(6) form {}
+main table tbody tr td:nth-of-type(6) form  input[type="hidden"]{}
+main table tbody tr td:nth-of-type(6) form  input[type="submit"]{}
 
 footer {}

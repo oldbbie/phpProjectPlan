@@ -22,6 +22,7 @@ $table = "
 				<th scope=\"col\">다음에할것</th>
 				<th scope=\"col\">대분류</th>
 				<th scope=\"col\">수정</th>
+				<th scope=\"col\">삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,6 +43,12 @@ while($row = mysqli_fetch_array($result)) {
 				<td>{$row['next_con']}</td>
 				<td>{$row['category_name']}</td>
 				<td><a href=\"update_plan.php?id={$row['id']}\">계획 수정하기</a></td>
+				<td>
+					<form action=\"delete_process_plan.php\" method=\"post\" onsubmit=\"if(!confirm('취소할껀가요?')){return false;}\">
+						<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">
+						<input type=\"submit\" value=\"삭제\">
+					</form>
+				</td>
 			</tr>
 	";
 }
@@ -70,8 +77,10 @@ $table .= "
 		</header>
 		
 		<main>
-			<a href="create_plan.php">계획 추가하기</a>
-			<a href="create_category.php">대분류 추가하기</a>
+			<div class="create">
+				<a href="create_plan.php">계획 추가하기</a>
+				<a href="create_category.php">대분류 추가하기</a>
+			</div>
 			<?=$table?>
 		</main>
 		

@@ -1,0 +1,24 @@
+.wrap {padding: 20px}
+
+header {display: flex; align-items: center; margin-bottom: 20px}
+header h1 {}
+header h1>a {}
+
+main {display: flex}
+main form {flex:1; max-width: 1024px}
+main form p {display:flex; margin-bottom: 20px}
+main form p input[type="text"] {flex:1; height: 56px}
+main form p textarea {flex:1; height: 56px}
+main form p select {width: 25vw}
+main form p select option {text-align: center}
+main form input[type="submit"] {}
+main .list_category {margin: 0 10px; border: 1px solid}
+main .list_category h3 {padding:10px 0; text-align:center}
+main .list_category table {}
+main .list_category table tr {}
+main .list_category table tr th,main .list_category table tr td {padding: 10px 20px; border-top: 1px solid}
+main .list_category table tr th {}
+main .list_category table tr th.select {background-color:#aaa; color:chartreuse}
+main .list_category table tr th.select ~td {background-color:#aaa; color:chartreuse}
+main .list_category table tr td {}
+main .list_category table tr td>a{}

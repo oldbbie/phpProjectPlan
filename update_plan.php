@@ -1,7 +1,7 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
-	$sql_plan = "SELECT * FROM plan_name where id=".mysqli_real_escape_string($conn,$_GET['id']);
+	$sql_plan = "SELECT * FROM plan_name WHERE id=".mysqli_real_escape_string($conn,$_GET['id']);
 	
 	$result_plan = mysqli_query($conn,$sql_plan);
 	$row_plan = mysqli_fetch_array($result_plan);
