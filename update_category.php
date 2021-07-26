@@ -55,7 +55,7 @@
 
 			$row = mysqli_fetch_array($result)
 		?>
-			<form action="create_process_category.php" method="post">
+			<form action="update_process_category.php" method="post">
 				<p>
 					<input type="hidden" name="id" placeholder="대분류명" value="<?=$row['id']?>">
 				</p>
@@ -63,7 +63,7 @@
 					<input type="text" name="name" placeholder="대분류명" value="<?=$row['name']?>">
 				</p>
 				<p>
-					<input type="submit" value="대분류만들기">
+					<input type="submit" value="대분류수정하기">
 				</p>
 			</form>
 			<article class="list_category">
