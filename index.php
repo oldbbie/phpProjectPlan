@@ -4,8 +4,10 @@
 date_default_timezone_set('Asia/Seoul');
 $today = date("Y-m-d");
 $recorder = 0;
+$interval_day = 0;
 if(isset($_GET['day'])){
-	$recorder += $_GET['day'];
+	$interval_day = $_GET['day'];
+	$recorder += $interval_day;
 	$s = $today." ".$recorder." days";
 	$timestamp = strtotime($s); 
 	$today = date("Y-m-d", $timestamp);
@@ -49,6 +51,7 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 	if($row_plan_name['id'] == $row_doit['id']){
 		$table = $table."
 			<form action=\"delete_process.php\" method=\"post\" onsubmit=\"if(!confirm('취소할껀가요?')){return false;}\">
+				<input type=\"hidden\" name=\"interval_day\" value=\"{$interval_day}\">
 				<input type=\"hidden\" name=\"plan_name_id\" value=\"{$escaped_id}\">
 				<input type=\"hidden\" name=\"today\" value=\"{$today}\">
 				<input type=\"submit\" value=\"완료\">
@@ -58,6 +61,7 @@ while($row_plan_name = mysqli_fetch_array($result_plan_name)){
 	} else {
 		$table = $table."
 		<form action=\"create_process.php\" method=\"post\">
+			<input type=\"hidden\" name=\"interval_day\" value=\"{$interval_day}\">
 			<input type=\"hidden\" name=\"plan_name_id\" value=\"{$escaped_id}\">
 			<input type=\"hidden\" name=\"today\" value=\"{$today}\">
 			<input type=\"submit\" value=\"아직안함\">
