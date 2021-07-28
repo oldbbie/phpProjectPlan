@@ -12,50 +12,60 @@ $sql = "SELECT
 				p.category_id = c.id";
 $result = mysqli_query($conn,$sql);
 
-$table = "
-	<table>
-		<thead>
-			<tr>
-				<th scope=\"col\">계획명</th>
-				<th scope=\"col\">숨기기</th>
-				<th scope=\"col\">해야할것</th>
-				<th scope=\"col\">다음에할것</th>
-				<th scope=\"col\">대분류</th>
-				<th scope=\"col\">수정</th>
-				<th scope=\"col\">삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-";
-while($row = mysqli_fetch_array($result)) {
-	$checked = (!(int)$row['hide']) ? "숨기기" : "보이기";
+$table = "";
+ if($result->num_rows == 0) {
+	 $table = "
+	 	<p>
+			<span>계획을 추가해주세요. </span>
+			<a href=\"create_plan.php\">계획 추가하러가기</a>
+		<p>";
+ } else {
+	$table = "
+		<table>
+			<thead>
+				<tr>
+					<th scope=\"col\">계획명</th>
+					<th scope=\"col\">숨기기</th>
+					<th scope=\"col\">해야할것</th>
+					<th scope=\"col\">다음에할것</th>
+					<th scope=\"col\">대분류</th>
+					<th scope=\"col\">수정</th>
+					<th scope=\"col\">삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+	";
+	while($row = mysqli_fetch_array($result)) {
+		$checked = (!(int)$row['hide']) ? "숨기기" : "보이기";
+		$table .= "
+				<tr>
+					<td>{$row['name']}</td>
+					<td>
+						<form action=\"update_process_hide.php\" method=\"post\">
+							<input type=\"hidden\" name=\"plan_name_id\" value=\"{$row['id']}\">
+							<input type=\"hidden\" id=\"hide\" name=\"hide\" value=\"{$row['hide']}\">
+							<input type=\"submit\" value=\"{$checked}\">
+						</form>
+					</td>
+					<td>{$row['content']}</td>
+					<td>{$row['next_con']}</td>
+					<td>{$row['category_name']}</td>
+					<td><a href=\"update_plan.php?id={$row['id']}\">계획 수정하기</a></td>
+					<td>
+						<form action=\"delete_process_plan.php\" method=\"post\" onsubmit=\"if(!confirm('취소할껀가요?')){return false;}\">
+							<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">
+							<input type=\"submit\" value=\"삭제\">
+						</form>
+					</td>
+				</tr>
+		";
+	}
 	$table .= "
-			<tr>
-				<td>{$row['name']}</td>
-				<td>
-					<form action=\"update_process_hide.php\" method=\"post\">
-						<input type=\"hidden\" name=\"plan_name_id\" value=\"{$row['id']}\">
-						<input type=\"hidden\" id=\"hide\" name=\"hide\" value=\"{$row['hide']}\">
-						<input type=\"submit\" value=\"{$checked}\">
-					</form>
-				</td>
-				<td>{$row['content']}</td>
-				<td>{$row['next_con']}</td>
-				<td>{$row['category_name']}</td>
-				<td><a href=\"update_plan.php?id={$row['id']}\">계획 수정하기</a></td>
-				<td>
-					<form action=\"delete_process_plan.php\" method=\"post\" onsubmit=\"if(!confirm('취소할껀가요?')){return false;}\">
-						<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">
-						<input type=\"submit\" value=\"삭제\">
-					</form>
-				</td>
-			</tr>
-	";
-}
-$table .= "
-		</tbody>
-	</table>
-	";
+			</tbody>
+		</table>
+		";
+ }
+
 
 ?>
 
