@@ -5,9 +5,15 @@
 	
 	$result = mysqli_query($conn,$sql);
 
-	$option = "";
-	while($row = mysqli_fetch_array($result)){
-		$option .= "<option value=\"{$row['id']}\">{$row['name']}</option>";
+	$category_list = "";
+ 	if($result->num_rows == 0) {
+	 	$category_list = "<a class=\"link\" href=\"create_category.php\">대분류를 추가해주세요.</a>";
+ 	} else {
+		$category_list .= "<select name=\"category_id\">";
+		while($row = mysqli_fetch_array($result)){
+			$category_list .= "<option value=\"{$row['id']}\">{$row['name']}</option>";
+		}
+		$category_list .= "</select>";
 	}
 ?>
 
@@ -41,9 +47,7 @@
 					<textarea name="next_con" placeholder="다음 목표 예정"></textarea>
 				</p>
 				<p>
-					<select name="category_id">
-						<?=$option?>
-					</select>
+					<?=$category_list?>
 				</p>
 				<p>
 					<input type="submit" value="계획만들기">
