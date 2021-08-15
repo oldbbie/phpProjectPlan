@@ -38,6 +38,9 @@
 		<main>
 			<form action="create_process_plan.php" method="post">
 				<p>
+					<?=$category_list?>
+				</p>
+				<p>
 					<input type="text" name="name" placeholder="계획명">
 				</p>
 				<p>
@@ -45,9 +48,6 @@
 				</p>
 				<p>
 					<textarea name="next_con" placeholder="다음 목표 예정"></textarea>
-				</p>
-				<p>
-					<?=$category_list?>
 				</p>
 				<p>
 					<input type="submit" value="계획만들기">
