@@ -31,6 +31,7 @@ $table = "";
 					<th scope=\"col\">대분류</th>
 					<th scope=\"col\">수정</th>
 					<th scope=\"col\">삭제</th>
+					<th scope=\"col\">순서</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -57,6 +58,10 @@ $table = "";
 							<input type=\"submit\" value=\"삭제\">
 						</form>
 					</td>
+					<td>
+						<button type=\"button\" onclick=\"changeOrder(this,'up')\">위로</button>
+						<button type=\"button\" onclick=\"changeOrder(this,'down')\">아래로</button>
+					</td>
 				</tr>
 		";
 	}
@@ -79,6 +84,27 @@ $table = "";
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/plan.css">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script>
+	function changeOrder(nodeGps,way){
+		var tbody=document.querySelector('tbody');
+		var thistr=nodeGps.parentNode.parentNode;
+		var tr=document.querySelectorAll('tbody tr');
+		for(var i=0; i<tr.length; i++){
+			if(thistr === tr[i]) {
+				var replaceNode = (way=='up') ? tr[i-1] : tr[i+1];
+				var cln = thistr.cloneNode(true);
+				tbody.replaceChild(cln,replaceNode);
+				tbody.replaceChild(replaceNode,tr[i]);
+				break;
+			}
+		}
+//		if(thistr === tr[1]) {
+//			alert('맞아');
+//		} else {
+//			alert('아니야');
+//		}
+	}
+</script>
 </head>
 <body>
 	<div class="wrap app">
