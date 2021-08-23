@@ -9,10 +9,15 @@ $sql = "SELECT
 			LEFT JOIN 
 				category AS c 
 			ON 
-				p.category_id = c.id";
+				p.category_id = c.id
+			ORDER BY
+				ord IS NULL,
+				ord ASC
+				";
 $result = mysqli_query($conn,$sql);
 
 $table = "";
+$order = "";
  if($result->num_rows == 0) {
 	 $table = "
 	 	<p>
@@ -36,6 +41,11 @@ $table = "";
 			</thead>
 			<tbody>
 	";
+	$order = "
+		<form class=\"update_ord\" action=\"update_process_plan_ord.php\" method=\"post\">
+			<input type=\"hidden\" name=\"len\" value=\"{$result->num_rows}\">
+	";
+	$i = 1;
 	while($row = mysqli_fetch_array($result)) {
 		$checked = (!(int)$row['hide']) ? "숨기기" : "보이기";
 		$table .= "
@@ -64,11 +74,17 @@ $table = "";
 					</td>
 				</tr>
 		";
+		$order.="<input type=\"hidden\" name=\"id{$row['id']}\" value=\"{$i}\">";
+		$i++;
 	}
 	$table .= "
 			</tbody>
 		</table>
 		";
+	$order.="
+			<button type=\"submit\">순서적용하기</button>
+		</form>
+	";
  }
 
 
@@ -89,21 +105,26 @@ $table = "";
 		var tbody=document.querySelector('tbody');
 		var thistr=nodeGps.parentNode.parentNode;
 		var tr=document.querySelectorAll('tbody tr');
+		
+		var ord_input = document.querySelectorAll(".update_ord input");
+		
 		for(var i=0; i<tr.length; i++){
 			if(thistr === tr[i]) {
-				var replaceNode = (way=='up') ? tr[i-1] : tr[i+1];
+				var replaceNode = (way=='up') ? tr[i-1] : tr[i+1];	
+				var i_way = (way=='up') ? i : i+2;	
 				var cln = thistr.cloneNode(true);
 				tbody.replaceChild(cln,replaceNode);
 				tbody.replaceChild(replaceNode,tr[i]);
+				
+				temp = ord_input[i+1].name;
+				ord_input[i+1].name = ord_input[i_way].name;
+				ord_input[i_way].name = temp;
+			
 				break;
 			}
 		}
-//		if(thistr === tr[1]) {
-//			alert('맞아');
-//		} else {
-//			alert('아니야');
-//		}
 	}
+	
 </script>
 </head>
 <body>
@@ -118,6 +139,7 @@ $table = "";
 				<a href="create_category.php">대분류 추가하기</a>
 			</div>
 			<?=$table?>
+			<?=$order?>
 		</main>
 		
 		<footer>

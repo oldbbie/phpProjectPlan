@@ -19,13 +19,21 @@ $year = substr( $today , 0, 4 );
 $mm = substr( $today , 5, 2 );
 $dd = substr( $today , 8, 2 );
 
-$sql_plan_name = "SELECT * FROM plan_name WHERE hide=0";
+$sql_plan_name = "
+	SELECT * FROM plan_name WHERE hide=0
+	ORDER BY
+		ord IS NULL,
+		ord ASC
+";
 $sql_doit = "
 	SELECT p.id, p.name, d.yn, p.content, next_con
 	FROM doit as d 
 	LEFT JOIN plan_name as p 
 	ON d.plan_name_id = p.id
 	WHERE d.day='{$today}' AND p.hide=0
+	ORDER BY
+		p.ord IS NULL,
+		p.ord ASC
 	";
 	
 $result_plan_name = mysqli_query($conn,$sql_plan_name);

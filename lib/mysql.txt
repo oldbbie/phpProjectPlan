@@ -11,6 +11,7 @@ CREATE TABLE category (
 
 CREATE TABLE plan_name (
     id INT NOT NULL AUTO_INCREMENT,
+    ord INT,
     name VARCHAR(30) NOT NULL,
     content text NULL,
     next_con text NULL,
@@ -24,6 +25,7 @@ CREATE TABLE plan_name (
 CREATE TABLE doit (
     id INT NOT NULL AUTO_INCREMENT,
     day DATE NOT NULL,
+    yn TINYINT NULL,
     plan_name_id int,
     PRIMARY KEY(id),
     FOREIGN KEY (plan_name_id) REFERENCES plan_name(id)
@@ -101,3 +103,10 @@ FROM doit as d
 LEFT JOIN plan_name as p 
 ON d.plan_name_id = p.id
 WHERE d.day='2021-05-26' AND p.hide=0;
+
+UPDATE 
+	plan_name
+SET
+	ord = 1
+WHERE
+	id = 4;
