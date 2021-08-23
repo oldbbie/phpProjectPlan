@@ -45,6 +45,11 @@
 					<input type="hidden" name="id" value="<?=$row_plan['id']?>">
 				</p>
 				<p>
+					<select name="category_id">
+						<?=$option?>
+					</select>
+				</p>
+				<p>
 					<input type="text" name="name" value="<?=$row_plan['name']?>" placeholder="계획명">
 				</p>
 				<p>
@@ -52,11 +57,6 @@
 				</p>
 				<p>
 					<textarea name="next_con" placeholder="다음 목표 예정"><?=$row_plan['next_con']?></textarea>
-				</p>
-				<p>
-					<select name="category_id">
-						<?=$option?>
-					</select>
 				</p>
 				<p>
 					<input type="submit" value="계획수정하기">
