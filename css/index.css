@@ -15,4 +15,5 @@ main table tr td:nth-of-type(2) input[type="text"]{width:200px}
 main table tr td:nth-of-type(3){max-width : 400px}
 main table tr td form{display: flex; justify-content: center; align-items: center}
 main table tr td form input[type="hidden"]{}
-main table tr td form input[type="submit"]{}
+main table tr td form input[type="submit"]{padding:3px; width: 60px; border: 1px dashed #222}
+main table tr td form input.success{border:1px solid; background-color:#fff}

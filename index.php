@@ -69,7 +69,7 @@ $table ="";
 					<input type=\"hidden\" name=\"interval_day\" value=\"{$interval_day}\">
 					<input type=\"hidden\" name=\"plan_name_id\" value=\"{$escaped_id}\">
 					<input type=\"hidden\" name=\"today\" value=\"{$today}\">
-					<input type=\"submit\" value=\"완료\">
+					<input class=\"success\" type=\"submit\" value=\"완료\">
 				</form>
 				";
 			$row_doit=mysqli_fetch_array($result_doit);
