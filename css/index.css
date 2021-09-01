@@ -1,9 +1,13 @@
 .wrap {padding: 20px}
 
-header {display: flex; align-items: center; margin-bottom: 20px}
-header>a{padding:5px 10px; border: 1px solid #ccc}
-header>a:hover{background-color: #ccc; border-color: #fff}
-header h2{margin: 0px 10px}
+header {}
+header h1{}
+header h1>a{}
+header nav.controler{display: flex; align-items: center; margin-bottom: 20px}
+header nav.controler>a{padding:5px 10px; border: 1px solid #ccc}
+header nav.controler>a:hover{background-color: #ccc; border-color: #fff}
+header nav.controler h2{margin: 0px 10px}
+header nav.manager{display: flex}
 
 main{}
 main table{}

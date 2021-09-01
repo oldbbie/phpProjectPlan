@@ -108,13 +108,19 @@ $table ="";
 <body>
 	<div class="wrap app">
 		<header>
-			<a href="index.php?day=<?=$prev?>">어제</a>
-			<h2><?php echo $year.'년'.$mm.'월'.$dd.'일'; ?></h2>
-			<a href="index.php?day=<?=$next?>">내일</a>
+			<h1><a href="/">홈</a></h1>
+			<nav class="controler">
+				<a href="index.php?day=<?=$prev?>">어제</a>
+				<h2><?php echo $year.'년'.$mm.'월'.$dd.'일'; ?></h2>
+				<a href="index.php?day=<?=$next?>">내일</a>
+			</nav>
+			<nav class="manager">
+				<a href="plan.php">계획 관리하기</a>
+				<a href="calendar.php">달력보기</a>
+			</nav>
 		</header>
 		
 		<main>
-			<a href="plan.php">계획 관리하기</a>
 			<table>
 				<?=$table?>
 			</table>
