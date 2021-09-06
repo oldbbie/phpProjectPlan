@@ -152,7 +152,6 @@
 		</main>
 		
 		<footer>
-			<?=$sql?>
 		</footer>
 	</div>
 </body>
