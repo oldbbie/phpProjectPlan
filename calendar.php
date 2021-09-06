@@ -1,32 +1,84 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
+	$sql = "SELECT * FROM plan_name";
+	
+	$result = mysqli_query($conn,$sql);
+
+	$plan_list = "";
+ 	if($result->num_rows == 0) {
+	 	$plan_list = "<a class=\"link\" href=\"create_plan.php\">목표를 만들어주세요.</a>";
+ 	} else {
+		$plan_list .= "<select name=\"plan\">";
+		$row = mysqli_fetch_array($result);
+		$first_plan_id = $row['id'];
+		$plan_list .= "<option value=\"{$row['id']}\">{$row['name']}</option>";
+		while($row = mysqli_fetch_array($result)){
+			$plan_list .= "<option value=\"{$row['id']}\">{$row['name']}</option>";
+		}
+		$plan_list .= "</select>";
+	}
+?>
+
+<?php
 	date_default_timezone_set('Asia/Seoul');
 	
 	$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
 	$month = isset($_GET['month']) ? $_GET['month'] : date('m');
+	$plan = isset($_GET['plan']) ? $_GET['plan'] : $first_plan_id;
 	
 	$title = "<h2>".$year."년 ".$month."월</h2>";
 	
 	$provMonthLink = "";
 	if ($month == 1) {
-		$provMonthLink .= "<a href=\"/calendar.php/?year=".($year-1)."&month=12\">이전달</a>";
+		$provMonthLink .= "
+			<a 
+				href=\"/calendar.php/
+					?year=".($year-1)."
+					&month=12
+					&plan=".$plan."
+			\">이전달</a>
+		";
 	} else {
-		$provMonthLink .= "<a href=\"/calendar.php/?year=".$year."&month=".($month-1)."\">이전달</a>";
+		$provMonthLink .= "
+			<a 
+				href=\"/calendar.php/
+					?year=".$year."
+					&month=".($month-1)."
+					&plan=".$plan."
+			\">이전달</a>
+		";
 	}
 	
 	$nextMonthLink = "";
 	if ($month == 12) {
-		$nextMonthLink .= "<a href=\"/calendar.php/?year=".($year+1)."&month=1\">다음달</a>";
+		$next_month_yy = $year+1;
+		$next_month_mm = 1;
 	} else {
-		$nextMonthLink .= "<a href=\"/calendar.php/?year=".$year."&month=".($month+1)."\">다음달</a>";
+		$next_month_yy = $year;
+		$next_month_mm = $month+1;
 	}
+	$nextMonthLink .= "
+		<a 
+			href=\"/calendar.php/
+				?year=".$next_month_yy."
+				&month=".$next_month_mm."
+				&plan=".$plan."
+		\">다음달</a>
+	";
 	
 	$date = $year."-".$month."-01"; // 이번달 1일
 	$time = strtotime($date); // 현재 날짜의 타임스탬프
 	$start_week = date('w', $time); // 1. 시작 요일
 	$total_day = date('t', $time); // 2. 현재 달의 총 날짜
 
+	$sql = "
+		SELECT * FROM doit
+		WHERE plan_name_id = ".$plan." AND day>='".$date."'AND day<'".$next_month_yy."-".$next_month_mm."-01' ORDER BY day
+	";
+	$result = mysqli_query($conn,$sql);
+	$row = mysqli_fetch_array($result);
+	
 	$tbody = "";
 	$tbody .= "<tbody>";
 	$day=1-$start_week;
@@ -36,7 +88,12 @@
 			if($day<=0) {
 				$tbody .= "<td></td>";
 			} else {
-				$tbody .= "<td>{$day}</td>";
+				if($day==(int)substr($row['day'], -2, 2 )) {
+					$tbody .= "<td>성공</td>";
+					$row = mysqli_fetch_array($result);
+				} else {
+					$tbody .= "<td>{$day}</td>";
+				}
 			}
 			$day++;
 			if($day>$total_day){
@@ -48,7 +105,6 @@
 	$tbody .= "</tbody>";
 ?>
 
-<?php include_once('category_list.php'); ?>
 
 <!doctype html>
 <html lang="ko">
@@ -69,7 +125,12 @@
 			<?=$title?>
 			<?=$provMonthLink?>
 			<?=$nextMonthLink?>
-			<?=$category_list?>
+			<form action="/calendar.php/" method="GET">
+				<input type="hidden" name="year" value="<?=$year?>">
+				<input type="hidden" name="month" value="<?=$month?>">
+				<?=$plan_list?>
+				<input type="submit" value="이동">
+			</form>
 			</nav>
 		</header>
 		
@@ -91,6 +152,7 @@
 		</main>
 		
 		<footer>
+			<?=$sql?>
 		</footer>
 	</div>
 </body>
