@@ -141,10 +141,12 @@ $order = "";
 		j=1;
 		for(var i=0; i<tr.length; i++){
 			if(thistr === tr[i]) {
-				ord_input[i+1].name = 'id'+tr.length;
-			} else {
-				ord_input[i+1].name = 'id'+j;
-				j++;
+				for(var i=i; i<tr.length; i++){
+					temp = ord_input[i+1].name;
+					ord_input[i+1].name = ord_input[i+2].name;
+					ord_input[i+2].name = temp;
+				}
+				break;
 			}
 		}
 	}

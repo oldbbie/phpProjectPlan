@@ -15,6 +15,6 @@ main{}
 main table{}
 main table thead{}
 main table thead tr{}
-main table thead tr th{}
+main table thead tr th{padding: 10px}
 main table tbody tr{}
-main table tbody tr td{}
+main table tbody tr td{padding: 10px}
