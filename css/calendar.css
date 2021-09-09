@@ -1,0 +1,20 @@
+.wrap {padding: 20px}
+
+header {}
+header h1{}
+header nav{}
+header nav h2{}
+header nav .nextMonthLink{display: flex}
+header nav .nextMonthLink a{}
+header nav form{}
+header nav form select{}
+header nav form select option{}
+header nav form input[type="submit"]{}
+
+main{}
+main table{}
+main table thead{}
+main table thead tr{}
+main table thead tr th{}
+main table tbody tr{}
+main table tbody tr td{}

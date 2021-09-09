@@ -1,7 +1,7 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
-	$sql = "SELECT * FROM plan_name";
+	$sql = "SELECT * FROM plan_name WHERE hide = 0";
 	
 	$result = mysqli_query($conn,$sql);
 
@@ -123,14 +123,16 @@
 			<h1><a href="/">홈</a></h1>
 			<nav>
 			<?=$title?>
-			<?=$provMonthLink?>
-			<?=$nextMonthLink?>
-			<form action="/calendar.php/" method="GET">
-				<input type="hidden" name="year" value="<?=$year?>">
-				<input type="hidden" name="month" value="<?=$month?>">
-				<?=$plan_list?>
-				<input type="submit" value="이동">
-			</form>
+				<div class="nextMonthLink">
+					<?=$provMonthLink?>
+					<?=$nextMonthLink?>
+				</div>
+				<form action="/calendar.php/" method="GET">
+					<input type="hidden" name="year" value="<?=$year?>">
+					<input type="hidden" name="month" value="<?=$month?>">
+					<?=$plan_list?>
+					<input type="submit" value="이동">
+				</form>
 			</nav>
 		</header>
 		

@@ -69,8 +69,10 @@ $order = "";
 						</form>
 					</td>
 					<td>
+						<button type=\"button\" onclick=\"changeOrderHome(this)\">맨위로</button>
 						<button type=\"button\" onclick=\"changeOrder(this,'up')\">위로</button>
 						<button type=\"button\" onclick=\"changeOrder(this,'down')\">아래로</button>
+						<button type=\"button\" onclick=\"changeOrderEnd(this)\">맨아래로</button>
 					</td>
 				</tr>
 		";
@@ -121,6 +123,28 @@ $order = "";
 				ord_input[i_way].name = temp;
 			
 				break;
+			}
+		}
+	}
+	
+	function changeOrderHome(nodeGps) {
+		alert('준비중');
+	}
+	
+	function changeOrderEnd(nodeGps) {
+		var tbody=document.querySelector('tbody');
+		var thistr=nodeGps.parentNode.parentNode;
+		var tr=document.querySelectorAll('tbody tr');
+		tbody.appendChild(thistr);
+		
+		var ord_input = document.querySelectorAll(".update_ord input");
+		j=1;
+		for(var i=0; i<tr.length; i++){
+			if(thistr === tr[i]) {
+				ord_input[i+1].name = 'id'+tr.length;
+			} else {
+				ord_input[i+1].name = 'id'+j;
+				j++;
 			}
 		}
 	}
