@@ -1,7 +1,7 @@
 <?php include_once('lib/db.php'); ?>
 
 <?php
-	$sql = "SELECT * FROM plan_name WHERE hide = 0";
+	$sql = "SELECT * FROM plan_name WHERE hide = 0 ORDER BY ord IS NULL,ord ASC";
 	
 	$result = mysqli_query($conn,$sql);
 
