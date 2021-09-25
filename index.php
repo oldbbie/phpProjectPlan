@@ -117,6 +117,8 @@ $table ="";
 			<nav class="manager">
 				<a href="plan.php">계획 관리하기</a>
 				<a href="calendar.php">달력보기</a>
+				<a href="memo.php">메모장</a>
+				<a href="information.php">정보</a>
 			</nav>
 		</header>
 		
